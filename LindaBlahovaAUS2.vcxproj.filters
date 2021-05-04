@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ApplicationLogic">
+      <UniqueIdentifier>{a8e0d164-d96c-4726-9c69-8dd4f15b547a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ApplicationLogic\Filters">
+      <UniqueIdentifier>{1a782e00-bc17-4f05-a9f9-83d6b704d376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ApplicationLogic\Sorting">
+      <UniqueIdentifier>{c470ef12-2730-4673-926a-f7b0a4681485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ApplicationLogic\Criteria">
+      <UniqueIdentifier>{a543abb4-3a95-450c-bc6e-3653b04dee72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ApplicationLogic\Other">
+      <UniqueIdentifier>{be1c05e6-64b3-4e24-8113-bfadabe8f34d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures">
+      <UniqueIdentifier>{a70feffb-abd6-4269-8142-a535fdaf5eda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\structures\list">
+      <UniqueIdentifier>{854f6d16-7e73-417e-a776-23a1caad6936}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Criterion.h">
+      <Filter>Header Files\ApplicationLogic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="CriterionType.h">
+      <Filter>Header Files\ApplicationLogic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="CriterionTU.h">
+      <Filter>Header Files\ApplicationLogic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="TerritorialUnit.h">
+      <Filter>Header Files\ApplicationLogic\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="AllCriteriaTU.h">
+      <Filter>Header Files\ApplicationLogic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeTU.h">
+      <Filter>Header Files\ApplicationLogic\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>Header Files\ApplicationLogic\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Header Files\ApplicationLogic\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterValue.h">
+      <Filter>Header Files\ApplicationLogic\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterInterval.h">
+      <Filter>Header Files\ApplicationLogic\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeFilter.h">
+      <Filter>Header Files\ApplicationLogic\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="structures\list\array_list.h">
+      <Filter>Source Files\structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="structures\list\bidirectional_cyclic_linked_list.h">
+      <Filter>Source Files\structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="structures\list\linked_list.h">
+      <Filter>Source Files\structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="structures\list\list.h">
+      <Filter>Source Files\structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="AllFiltersTU.h">
+      <Filter>Header Files\ApplicationLogic\Filters</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -111,63 +111,87 @@ namespace structures
 	template<typename T, int K>
 	inline KWayTreeNode<T, K>::~KWayTreeNode()
 	{
-		//TODO 08: KWayTreeNode<T>
+		// najskot zrusim synov a potom seba
+		for (int i = 0; i < K; i++)
+		{
+			delete (*children_)[i];
+		}
+		delete children_;
+		children_ = nullptr;
 	}
 
 	template<typename T, int K>
 	inline TreeNode<T>* KWayTreeNode<T, K>::shallowCopy()
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::shallowCopy: Not implemented yet.");
+		return new KWayTreeNode<T, K>(*this);
 	}
 
 	template<typename T, int K>
 	inline bool KWayTreeNode<T, K>::isLeaf()
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::isLeaf: Not implemented yet.");
+		for (int i = 0; i < K; i++)
+		{
+			if ((*children_)[i] != nullptr)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	template<typename T, int K>
 	inline TreeNode<T>* KWayTreeNode<T, K>::getSon(int order) const
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::getSon: Not implemented yet.");
+		return (*children_)[order];
 	}
 
 	template<typename T, int K>
 	inline void KWayTreeNode<T, K>::insertSon(TreeNode<T>* son, int order)
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::insertSon: Not implemented yet.");
+		replaceSon(son, order);
 	}
 
 	template<typename T, int K>
 	inline TreeNode<T>* KWayTreeNode<T, K>::replaceSon(TreeNode<T>* son, int order)
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::replaceSon: Not implemented yet.");
+		TreeNode<T>* oldSon = (*children_)[order];
+		(*children_)[order] = dynamic_cast<KWayTreeNode<T, K>*>(son);
+
+		if (son != nullptr)
+		{
+			son->setParent(this);
+		}
+		if (oldSon != nullptr)
+		{
+			oldSon->resetParent();
+		}
+		return oldSon;
 	}
 
 	template<typename T, int K>
 	inline TreeNode<T>* KWayTreeNode<T, K>::removeSon(int order)
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::removeSon: Not implemented yet.");
+		return replaceSon(nullptr, order);
 	}
 
 	template<typename T, int K>
 	inline int KWayTreeNode<T, K>::degree()
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::degree: Not implemented yet.");
+		return K;
 	}
 
 	template<typename T, int K>
 	inline int KWayTreeNode<T, K>::numberOfSons()
 	{
-		//TODO 08: KWayTreeNode<T>
-		throw std::exception("KWayTreeNode<T>::numberOfSons: Not implemented yet.");
+		int result = 0;
+		for (int i = 0; i < K; i++)
+		{
+			if ((*children_)[i] != nullptr)
+			{
+				result++;
+			}
+		}
+		return result;
 	}
 
 	template<typename T, int K>

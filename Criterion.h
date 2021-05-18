@@ -1,29 +1,14 @@
 #pragma once
 
-#include "CriterionType.h"
+#include "TerritorialUnit.h"
+#include "structures/heap_monitor.h"
 
 using namespace std;
 
-template <typename T, typename O>
+template <typename T>
 class Criterion {
 public:
-	virtual T rate(O object) = 0;
+	virtual T rate(TerritorialUnit* object) = 0;
 
-	CriterionType getType();
-	void setType(CriterionType type);
-
-private:
-	CriterionType type_;
 };
 
-template<typename T, typename O>
-inline CriterionType Criterion<T, O>::getType()
-{
-	return type_;
-}
-
-template<typename T, typename O>
-inline void Criterion<T, O>::setType(CriterionType type)
-{
-	type_ = type;
-}

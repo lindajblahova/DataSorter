@@ -1,22 +1,32 @@
 #pragma once
 
 #include "Criterion.h"
-#include "Table.h"
+#include "FilterBase.h"
+#include "structures/heap_monitor.h"
 
-template <typename K, typename T, typename V>
-class Filter 
+template <typename V>
+class Filter : public FilterBase
 {
+
 public:
-	Filter(Criterion<V, T> criterion);
-	virtual bool meetsFilter(T* object) = 0;
-	void filterTable(Table<K, T> table, Table<K, T> newTable);
+	Filter(Criterion<V>* criterion);
+	virtual bool meetsFilter(TerritorialUnit* object) = 0;
+	~Filter();
 
 protected:
-	 Criterion<V, T> criterion_;
+	 Criterion<V>* criterion_;
 };
 
-template<typename K, typename T, typename V>
-inline Filter<K, T, V>::Filter(Criterion<V, T> criterion)
+template<typename V>
+inline Filter<V>::Filter(Criterion<V>* criterion) : FilterBase::FilterBase()
 {
 	criterion_ = criterion;
 }
+
+template<typename V>
+inline Filter< V>::~Filter()
+{
+	delete criterion_;
+	criterion_ = nullptr;
+}
+

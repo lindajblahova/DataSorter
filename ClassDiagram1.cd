@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Reader">
+    <Position X="3.25" Y="9.75" Width="7.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Reader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TerritorialUnit">
+    <Position X="3.25" Y="1.75" Width="9.5" />
+    <TypeIdentifier>
+      <HashCode>BAAYkAAAACBAAAQAABAAAAEAASAEAAQAAEAEIABAIBI=</HashCode>
+      <FileName>TerritorialUnit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasks">
+    <Position X="3.25" Y="7.25" Width="9.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAABAAAAAAAAABAACAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="TypeTU">
+    <Position X="11.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAgAAAAAAAAAIAAAAAAAAAAAAAAIAABAAAAAA=</HashCode>
+      <FileName>TypeTU.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

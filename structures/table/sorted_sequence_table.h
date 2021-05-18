@@ -66,21 +66,68 @@ namespace structures
 	template<typename K, typename T>
 	inline void SortedSequenceTable<K, T>::insert(const K & key, const T & data)
 	{
-		//TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::insert: Not implemented yet.");
+		bool keyFound = false;
+		int index = indexOfKey(key, 0, this->size(), keyFound);
+		/*if (keyFound)
+		{
+			throw std::logic_error("Key already present");
+		}
+		else
+		{
+			
+		}*/
+		this->list_->insert(new TableItem<K, T>(key, data), index);
 	}
 
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
 	{
-		//TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::findTableItem: Not implemented yet.");
+		bool keyFound = false;
+		int index = indexOfKey(key, 0, this->size(), keyFound);
+		return keyFound ? (*this->list_)[index] : nullptr;
 	}
 
 	template<typename K, typename T>
 	inline int SortedSequenceTable<K, T>::indexOfKey(const K & key, int indexStart, int indexEnd, bool & found) const
 	{
-		//TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::indexOfKey: Not implemented yet.");
+		// bisekcia s modifikaciou
+		// ak sa indexstart == size (), found false a vrat indexStart
+		// na mieste kde sa neda rozdekut sa rozhodnem ci vratim index alebo ind+1 na
+		// zaklade porovnania klucov
+
+		if (indexStart == this->size())
+		{
+			found = false;
+			return indexStart;
+		}
+
+		int indexMiddle = (indexStart + indexEnd) / 2;
+		K keyMiddle = (*this->list_)[indexMiddle]->getKey();
+
+		if (keyMiddle == key)
+		{
+			found = true;
+			return indexMiddle;
+		}
+		else
+		{
+			if (indexStart == indexEnd)
+			{
+				found = false;
+				return key < keyMiddle ? indexMiddle : indexMiddle + 1;
+			}
+			else
+			{
+				if (keyMiddle < key)
+				{
+					indexStart = indexMiddle + 1;
+				}
+				else 
+				{
+					indexEnd = indexMiddle;
+				}
+				return indexOfKey(key, indexStart, indexEnd, found);
+			}
+		}
 	}
 }

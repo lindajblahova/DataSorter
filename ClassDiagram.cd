@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Filter&lt;K, V&gt;">
+    <Position X="3" Y="2.5" Width="7.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAIAAAAAAAAAABAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Filter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FilterInterval&lt;K, V&gt;">
+    <Position X="3" Y="5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAACIAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>FilterInterval.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FilterValue&lt;K, V&gt;">
+    <Position X="7.5" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAgAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>FilterValue.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

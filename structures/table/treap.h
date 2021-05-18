@@ -143,7 +143,8 @@ namespace structures
 	template<typename K, typename T>
 	inline Treap<K, T>::~Treap()
 	{
-		//TODO 10: Treap
+		delete generator_;
+		generator_ = nullptr;
 	}
 
 	template<typename K, typename T>
@@ -168,15 +169,55 @@ namespace structures
 	template<typename K, typename T>
 	inline void Treap<K, T>::insert(const K & key, const T & data)
 	{
-		//TODO 10: Treap
-		throw std::exception("Treap<K, T>::insert: Not implemented yet.");
+		TreapItem<K, T>* treapItem = new TreapItem<K, T>(key, data, (*generator_)());
+		BSTTreeNode* treeNode = new BSTTreeNode(treapItem);
+
+		if (tryToInsertNode(treeNode))
+		{
+			size_++;
+
+			while (!isHeapOK(treeNode))
+			{
+				if (treeNode->isLeftSon())
+				{
+					rotateRightOverParent(treeNode);
+				}
+				else 
+				{
+					rotateLeftOverParent(treeNode);
+				}
+			}
+		}
+		else
+		{
+			delete treapItem;
+			delete treeNode;
+			throw std::logic_error("Key already present!");
+		}
 	}
 
 	template<typename K, typename T>
 	inline T Treap<K, T>::remove(const K & key)
 	{
-		//TODO 10: Treap
-		throw std::exception("Treap<K, T>::remove: Not implemented yet.");
+		bool found = false;
+		BSTTreeNode* treeNode = findBSTNode(key, found);
+
+		if (found)
+		{
+			//  rotaciami dostanem treeNode do listu
+			extractNode(treeNode);
+
+			T result = treeNode->accessData()->accessData();
+
+			delete treeNode->accessData();
+			delete treeNode;
+			size_--;
+			return result;
+		}
+		else
+		{
+			throw std::logic_error("Key not found!");
+		}
 	}
 
 	template<typename K, typename T>
@@ -189,8 +230,7 @@ namespace structures
 	template<typename K, typename T>
 	inline int Treap<K, T>::extractPriority(BinarySearchTree<K, T>::BSTTreeNode * node)
 	{
-		//TODO 10: Treap
-		throw std::exception("Treap<K, T>::extractPriority: Not implemented yet.");
+		return node != nullptr ? dynamic_cast<TreapItem<K, T>*>(node->accessData())->getPriority() : INT_MAX;
 	}
 
 	template<typename K, typename T>

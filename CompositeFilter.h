@@ -1,33 +1,51 @@
 #pragma once
 
 #include "Filter.h"
+#include "TerritorialUnit.h"
+#include "structures/heap_monitor.h"
 #include "structures/list/linked_list.h"
 
-template <typename K, typename T, typename V>
 class CompositeFilter
 {
 public:
-	void addFilter(Filter<K, T, V>* filter);
-	bool meetsFilter(T* object) override;
+	CompositeFilter();
+	void addFilter(FilterBase* filter);
+	bool meetsFilter(TerritorialUnit* object);
+	int getSize();
+	~CompositeFilter();
 private:
-	structures::LinkedList<Filter<K, T, V>> filters_;
+	structures::List<FilterBase*>* filters_;
 };
 
-template<typename K, typename T, typename V>
-inline void CompositeFilter<K, T, V>::addFilter(Filter<K, T, V>* filter)
+inline CompositeFilter::CompositeFilter()
+{
+	filters_ = new structures::LinkedList<FilterBase*>();
+}
+
+inline void CompositeFilter::addFilter(FilterBase* filter)
 {
 	filters_->add(filter);
 }
 
-template<typename K, typename T, typename V>
-inline bool CompositeFilter<K, T, V>::meetsFilter(T* object)
+inline bool CompositeFilter::meetsFilter(TerritorialUnit* object)
 {
-	for (auto filter : filters_)
+	for (auto f : *filters_)
 	{
-		if (!filter.meetsFilter(object))
+		if (!f->meetsFilter(object))
 		{
 			return false;
 		}
 	}
 	return true;
+}
+
+inline int CompositeFilter::getSize()
+{
+	return filters_->size();
+}
+
+inline CompositeFilter::~CompositeFilter()
+{
+	delete filters_;
+	filters_ = nullptr;
 }

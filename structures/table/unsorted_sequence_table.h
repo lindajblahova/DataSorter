@@ -63,8 +63,7 @@ namespace structures
 	template<typename K, typename T>
 	inline TableItem<K, T>& UnsortedSequenceTable<K, T>::getItemAtIndex(int index)
 	{
-		//TODO 09: UnsortedSequenceTable
-		throw std::exception("UnsortedSequenceTable<K, T>::populatePath: Not implemented yet.");
+		return *(*this->list_)[index];
 	}
 
 	template<typename K, typename T>
@@ -76,8 +75,6 @@ namespace structures
 	template<typename K, typename T>
 	inline void UnsortedSequenceTable<K, T>::swap(TableItem<K, T>& first, TableItem<K, T>& second)
 	{
-		//TODO 09: UnsortedSequenceTable
-		throw std::exception("UnsortedSequenceTable<K, T>::swap: Not implemented yet.");
+		DSRoutines::swap(first, second);
 	}
-
 }

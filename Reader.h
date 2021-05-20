@@ -101,7 +101,6 @@ TerritorialUnit* Reader::read(wifstream& dataCommune, wifstream& dataParent)
 	dataParent.close();
 	
 	return stateTU;
-
 }
 
 inline Reader::Reader()

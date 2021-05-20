@@ -9,6 +9,5 @@ template <typename T>
 class Criterion {
 public:
 	virtual T rate(TerritorialUnit* object) = 0;
-
 };
 

@@ -9,7 +9,6 @@ class FilterValue : public Filter<V>
 public:
 	FilterValue(Criterion<V>* criterion, V value);
 	bool meetsFilter(TerritorialUnit* object) override;
-	//void filterTable(structures::SortedSequenceTable<K, TerritorialUnit*>* table, structures::LinkedList<TerritorialUnit*>* newList) override;
 	~FilterValue();
 
 protected:
@@ -31,14 +30,3 @@ template<typename V>
 inline FilterValue<V>::~FilterValue()
 {
 }
-
-/*template<typename K, typename V>
-inline void FilterValue<K, V>::filterTable(structures::SortedSequenceTable<K, TerritorialUnit*>* table, structures::LinkedList<TerritorialUnit*>* newList)
-{
-	TerritorialUnit* tmp = nullptr;
-	table->tryFind(, tmp);
-	if (tmp != nullptr)
-	{
-		newList->add(tmp);
-	}
-}*/

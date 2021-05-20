@@ -13,7 +13,7 @@ class FilterTable
 {
 public:
 	FilterTable(K value);
-	void filterTable(SortedSequenceTable<K, TerritorialUnit*>* table, LinkedList<TerritorialUnit*>* newList);
+	bool filterTable(SortedSequenceTable<K, TerritorialUnit*>* table, UnsortedSequenceTable<wstring, TerritorialUnit*>* newList);
 
 private:
 	K key_;
@@ -25,12 +25,14 @@ inline FilterTable<K>::FilterTable(K key) : key_(key)
 }
 
 template<typename K>
-inline void FilterTable<K>::filterTable(SortedSequenceTable<K, TerritorialUnit*>* table, LinkedList<TerritorialUnit*>* newList)
+inline bool FilterTable<K>::filterTable(SortedSequenceTable<K, TerritorialUnit*>* table, UnsortedSequenceTable<wstring, TerritorialUnit*>* newList)
 {
 	TerritorialUnit* tmp = nullptr;
 	table->tryFind(key_, tmp);
 	if (tmp != nullptr)
 	{
-		newList->add(tmp);
+		newList->insert(tmp->getName(), tmp);
+		return true;
 	}
+	return false;
 }

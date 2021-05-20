@@ -153,7 +153,10 @@
     <ClInclude Include="FilterInterval.h" />
     <ClInclude Include="FilterTable.h" />
     <ClInclude Include="FilterValue.h" />
+    <ClInclude Include="Filtration.h" />
+    <ClInclude Include="LetterCode.h" />
     <ClInclude Include="Reader.h" />
+    <ClInclude Include="Sorter.h" />
     <ClInclude Include="structures\array\array.h" />
     <ClInclude Include="structures\ds_routines.h" />
     <ClInclude Include="structures\ds_structure_types.h" />

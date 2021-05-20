@@ -7,10 +7,15 @@
 class FilterTUName : public FilterValue<wstring> {
 public:
 	FilterTUName(Criterion<wstring>* criterion, wstring value);
+	bool meetsFilter(TerritorialUnit* object) override;
 	~FilterTUName();
 };
 inline FilterTUName::FilterTUName(Criterion<wstring>* criterion, wstring value) : FilterValue<wstring>::FilterValue(criterion, value)
 {
+}
+inline bool FilterTUName::meetsFilter(TerritorialUnit* object)
+{
+	return this->value_.compare(criterion_->rate(object)) == 0 ? true : false;
 }
 inline FilterTUName::~FilterTUName()
 {

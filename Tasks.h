@@ -2,11 +2,13 @@
 
 #include <string>
 #include <iostream>
+#include <Windows.h>
 #include "structures/list/linked_list.h"
 #include "TerritorialUnit.h"
 #include "Criterion.h"
 #include "AllCriteriaTU.h"
 #include "FilterValue.h"
+#include "FilterTable.h"
 #include "structures/heap_monitor.h"
 
 using namespace std;
@@ -15,123 +17,74 @@ using namespace structures;
 class Tasks
 {
 public:
-	void Task3(TerritorialUnit* parentTU, CompositeFilter* filters_, TypeTU type, UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfoundIDK, wstring name);
-    TypeTU Task3InputType();
-    TerritorialUnit* Task3InputParent(CompositeFilter* filters_, TerritorialUnit* stateSlovakia, TypeTU type);
-    wstring Task3AInput();
-    void Task3BInput(int populationMin, int populationMax);
-    void Task3CInput(double rateMin, double rateMax);
 
-    void CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfound);
-    void CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfound, int sortCriteriaType);
+    void InputSortType(bool* bSortOrder);
+
+    int InputSubtask(int iTask);
+
+    void Task1AInput(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name);
+    void Task1BInput(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax);
+    void Task1CInput(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax);
+
+    void Task3InputType(CompositeFilter* filters_, Criterion<TypeTU>** criterionType, FilterValue<TypeTU>** filterType, TypeTU* type);
+    TerritorialUnit* Task3InputParent(CompositeFilter* filters_, TerritorialUnit* stateSlovakia);
+    void Task3AInput(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name);
+    void Task3BInput(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax);
+    void Task3CInput(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax);
+
+    void CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* newTable);
+    void CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* newTable, int sortCriteriaType);
+
+private:
+    inline void changeColor(int desiredColor);
+
+    void createNameFilter(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name);
+    void createTypeFilter(CompositeFilter* filters_, Criterion<TypeTU>** criterionType, FilterValue<TypeTU>** filterType, TypeTU* type);
+    void createPopulationFilter(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax);
+    void createBuildUpRateFilter(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax);
+  
 };
 
-inline void Tasks::Task3(TerritorialUnit* parentTU, CompositeFilter* filters_, TypeTU type, UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfoundIDK, wstring name)
+inline void Tasks::InputSortType(bool* bSortOrder)
 {
-    bool found = false;
-    TerritorialUnit* tmp = nullptr;
+    int iSortOrder;
+    wcout << L"Zvoľte typ triedenia: " << endl;
+    wcout << L"0 - Triedenie vzostupne" << endl;
+    wcout << L"1 - Triedenie zostupne" << endl;
+    wcin >> iSortOrder;
 
-    if (filters_->meetsFilter(parentTU))
-    {
-        LLfoundIDK->insert(parentTU->getName(), parentTU);
-    }
-    if (name != L"x")
-    {
-        tmp = nullptr;
-        parentTU->getChildren()->tryFind(name, tmp);
-        if (tmp != nullptr)
-        {
-            LLfoundIDK->insert(tmp->getName(), tmp);
-            found = true;
-        }
-    }
-    if (!found)
-    {
-        for (auto region : *parentTU->getChildren())
-        {
-            if (filters_->meetsFilter(region->accessData()))
-            {
-                LLfoundIDK->insert(region->getKey(), region->accessData());
-            }
-            if (!filters_->meetsFilter(region->accessData()) || type == All)
-            {
-                if (name != L"x" && region->accessData()->getChildren() != nullptr)
-                {
-                    tmp = nullptr;
-                    region->accessData()->getChildren()->tryFind(name, tmp);
-                    if (tmp != nullptr)
-                    {
-                        LLfoundIDK->insert(tmp->getName(), tmp);
-                        break;
-                    }
-                }
-                if (region->accessData()->getChildren() != nullptr)
-                {
-                    for (auto district : *region->accessData()->getChildren())
-                    {
-                        if (filters_->meetsFilter(district->accessData()))
-                        {
-                            LLfoundIDK->insert(district->getKey(), district->accessData());
-                        }
-                        if (!filters_->meetsFilter(district->accessData()) || type == All)
-                        {
-                            if (name != L"x" && district->accessData()->getChildren() != nullptr)
-                            {
-                                tmp = nullptr;
-                                district->accessData()->getChildren()->tryFind(name, tmp);
-                                if (tmp != nullptr)
-                                {
-                                    LLfoundIDK->insert(tmp->getName(), tmp);
-                                    break;
-                                }
-                            }
-                            if (name == L"x" && district->accessData()->getChildren() != nullptr)
-                            {
-                                for (auto commune : *district->accessData()->getChildren())
-                                {
-                                    if (filters_->meetsFilter(commune->accessData()))
-                                    {
-                                        LLfoundIDK->insert(commune->getKey(), commune->accessData());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    iSortOrder == 0 ? *bSortOrder = true : *bSortOrder = false;
 }
 
-inline TypeTU Tasks::Task3InputType()
+inline void Tasks::Task3InputType(CompositeFilter* filters_, Criterion<TypeTU>** criterionType, FilterValue<TypeTU>** filterType, TypeTU* type)
 {
-    wcout << "Zadaj typ územnej jednotky - 1-obec, 2-okres, 3-kraj, 4-stat (zadaj 0 pre vynechanie): " << endl;
-    int typeInt;
-    TypeTU type;
-    wcin >> typeInt; 
-    switch (typeInt)
+    wcout << L"Zadaj typ územnej jednotky - 1-obec, 2-okres, 3-kraj, 4-stat (zadaj x pre vynechanie): " << endl;
+    int iType;
+    wstring chType;
+    wcin >> chType;
+    chType != L"x" ? iType = stoi(chType) : iType = 0;
+    switch (iType)
     {
     case 1:
-        type = Commune;
+        *type = Commune;
         break;
     case 2:
-        type = District;
+        *type = District;
         break;
     case 3:
-        type = Region;
+        *type = Region;
         break;
     case 4:
-        type = State;
+        *type = State;
         break;
     default:
-        type = All;
-        break;
+        *type = All;
     }
 
-    return type;
+    createTypeFilter(filters_, criterionType, filterType, type);
 }
 
-inline TerritorialUnit* Tasks::Task3InputParent(CompositeFilter* filters_, TerritorialUnit* stateSlovakia, TypeTU type)
+inline TerritorialUnit* Tasks::Task3InputParent(CompositeFilter* filters_, TerritorialUnit* stateSlovakia)
 {
     TerritorialUnit* parentTU;
     TerritorialUnit* tmpTU;
@@ -175,53 +128,156 @@ inline TerritorialUnit* Tasks::Task3InputParent(CompositeFilter* filters_, Terri
     return parentTU;
 }
 
-inline wstring Tasks::Task3AInput()
+inline int Tasks::InputSubtask(int iTask)
 {
-    wcout << "Zadaj nazov (zadaj x pre vynechanie): " << endl;
-    wstring name;
-    getline(wcin, name);
-    return name;
+    if (iTask == 1)
+    {
+        wcout << L"Zvoľte kritérium pre filtrovanie obcí (1,2,3): " << endl;
+    }
+    else if (iTask == 3)
+    {
+        wcout << L"Zvoľte kritérium pre filtrovanie územných jednotiek (1,2,3): " << endl;
+    }
+
+    switch (iTask)
+    {
+    case 1: case 3:
+        wcout << L"1 - 1A - Filtrovanie podľa Názvu" << endl;
+        wcout << L"2 - 1B - Filtrovanie podľa Počtu obyvateľov" << endl;
+        wcout << L"3 - 1C - Filtrovanie podľa Zastavanosti" << endl;
+        break;
+    case 2: case 4:
+        wcout << L"Zvoľte triediace kritérium: " << endl;
+        wcout << L"1 - 2A - Triedenie obcí podla Názvu" << endl;
+        wcout << L"2 - 2B - Triedenie obcí podla Počtu obyvateľov" << endl;
+        wcout << L"3 - 2C - Triedenie obcí podla Zastavanosti" << endl;
+        break;
+    default:
+        break;
+    }
+   
+    int taskSubType;
+    wcin >> taskSubType;
+    return taskSubType;
 }
 
-inline void Tasks::Task3BInput(int populationMin, int populationMax)
+inline void Tasks::Task1AInput(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name)
 {
-    wcout << "Zadaj min pocet obyvatelov (ak nechceš zadať počet, zadaj x) :" << endl;
+    wcout << L"Zadajte názov: " << endl;
+    getline(wcin, *name);
+    getline(wcin, *name);
+    createNameFilter(filters_, criterionName, filterName, name);
+}
+
+inline void Tasks::Task1BInput(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax)
+{
+    wcout << L"Zadajte minimálny počet obyvateľov:" << endl;
+    wcin >> *populationMin;
+
+    wcout << L"Zadajte maximálny počet obyvateľov: " << endl;
+    wcin >> *populationMax;
+    createPopulationFilter(filters_, critPopulation, filterPopulation, populationMin, populationMax);
+}
+
+inline void Tasks::Task1CInput(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax)
+{
+    wcout << L"Zadajte minimálnu zastavanosť:" << endl;
+    wcin >> *rateMin;
+    wcout << L"Zadajte maximálnu zastavanosť:" << endl;
+    wcin >> *rateMax;
+    createBuildUpRateFilter(filters_, critBuildUpRate, filterBuildUpRate, rateMin, rateMax);
+}
+
+inline void Tasks::Task3AInput(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name)
+{
+    wcout << L"Zadajte názov (zadajte x pre vynechanie): " << endl;
+    getline(wcin, *name);
+    getline(wcin, *name);
+    createNameFilter(filters_, criterionName, filterName, name);
+}
+
+inline void Tasks::Task3BInput(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax)
+{
+    wcout << L"Zadajte minnimálny počet obyvateľov (zadajte x pre vynechanie) :" << endl;
     wstring popuationMinString;
     wcin >> popuationMinString;
     if (popuationMinString != L"x")
     {
-        populationMin = stoi(popuationMinString);
+        *populationMin = stoi(popuationMinString);
     }
 
-    wcout << "Zadaj max pocet obyvatelov (ak nechceš zadať počet, zadaj x): " << endl;
+    wcout << "Zadajte maximálny počet obyvateľov (zadajte x pre vynechanie): " << endl;
     wstring popuationMaxString;
     wcin >> popuationMaxString;
     if (popuationMinString != L"x")
     {
-        populationMax = stoi(popuationMaxString);
+        *populationMax = stoi(popuationMaxString);
     }
+    createPopulationFilter(filters_, critPopulation, filterPopulation, populationMin, populationMax);
 }
 
-inline void Tasks::Task3CInput(double rateMin, double rateMax)
+inline void Tasks::Task3CInput(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax)
 {
-    wcout << "Zadaj min zastavanost (ak nechceš zadať počet, zadaj x) :" << endl;
+    wcout << "Zadajte minimálnu zastavanosť (zadajte x pre vynechanie) :" << endl;
     wstring rateMinString;
     wcin >> rateMinString;
     if (rateMinString != L"x")
     {
-        rateMin = stod(rateMinString);
+        *rateMin = stod(rateMinString);
     }
 
-    wcout << "Zadaj max zastavanost (ak nechceš zadať počet, zadaj x) : " << endl;
+    wcout << "Zadajte maximálnu zastavanost (zadajte x pre vynechanie) : " << endl;
     wstring rateMaxString;
     wcin >> rateMaxString;
     if (rateMaxString != L"x")
     {
-        rateMax = stod(rateMaxString);
+        *rateMax = stod(rateMaxString);
+    }
+    createBuildUpRateFilter(filters_, critBuildUpRate, filterBuildUpRate, rateMin, rateMax);
+}
+
+inline void Tasks::createNameFilter(CompositeFilter* filters_, Criterion<wstring>** criterionName, FilterTUName** filterName, wstring* name)
+{
+    if (*name != L"x")
+    {
+        *criterionName = new CriterionTUName();
+        *filterName = new FilterTUName(*criterionName, *name);
+        filters_->addFilter(*filterName);
+    }
+    else
+    {
+        *name = L"";
     }
 }
 
-inline void Tasks::CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfound)
+inline void Tasks::createTypeFilter(CompositeFilter* filters_, Criterion<TypeTU>** criterionType, FilterValue<TypeTU>** filterType, TypeTU* type)
+{
+    *criterionType = new CriterionTUType();
+    *filterType = new FilterTUType(*criterionType, *type);
+    filters_->addFilter(*filterType);
+}
+
+inline void Tasks::createPopulationFilter(CompositeFilter* filters_, Criterion<int>** critPopulation, FilterTUPopulation** filterPopulation, int* populationMin, int* populationMax)
+{
+    if (*populationMin != -1 && *populationMax != -1 && *populationMin <= *populationMax)
+    {
+        *critPopulation = new CriterionTUPopulation();
+        *filterPopulation = new FilterTUPopulation(*critPopulation, *populationMin, *populationMax);
+        filters_->addFilter(*filterPopulation);
+    }
+}
+
+inline void Tasks::createBuildUpRateFilter(CompositeFilter* filters_, Criterion<double>** critBuildUpRate, FilterTUBuildUpRate** filterBuildUpRate, double* rateMin, double* rateMax)
+{
+    if (*rateMin != -1.0 && *rateMax != -1.0 && *rateMin <= *rateMax)
+    {
+        *critBuildUpRate = new CriterionTUBuildUpRate();
+        *filterBuildUpRate = new FilterTUBuildUpRate(*critBuildUpRate, *rateMin, *rateMax);
+        filters_->addFilter(*filterBuildUpRate);
+    }
+}
+
+inline void Tasks::CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* newTable)
 {
     CriterionTUName* cName = new CriterionTUName();
     CriterionTUPreProductive* cPreProductive = new CriterionTUPreProductive();
@@ -232,26 +288,40 @@ inline void Tasks::CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUni
     CriterionTUBuildUpArea* cBuildUpArea = new CriterionTUBuildUpArea();
     CriterionTUBuildUpRate* cBuildUpRate = new CriterionTUBuildUpRate();
 
-    for (auto item : *LLfound)
+    for (auto item : *newTable)
     {
+        changeColor(11);
+        wcout << L" | Rodičia: ";
         TerritorialUnit* temp = item->accessData()->getParent();
         while (temp != nullptr) {
-            wcout << L"Rodič: " << cName->rate(temp) << ", ";
+            wcout << cName->rate(temp);
             temp = temp->getParent();
+            if (temp != nullptr)
+            {
+                wcout << " + ";
+            }
         }
-        wcout << endl;
+        wcout << " |" << endl;
 
-        wcout << L"Územná jednotka: " << cName->rate(item->accessData())
-            << L", Preproduktívni: " << cPreProductive->rate(item->accessData())
-            << L", Produktívni: " << cProductive->rate(item->accessData())
-            << L", Poproduktívni: " << cPostProductive->rate(item->accessData())
-            << L", Populacia: " << cPopulation->rate(item->accessData())
-            << L", Rozloha: " << cTotalArea->rate(item->accessData())
-            << L", Zastavane: " << cBuildUpArea->rate(item->accessData())
-            << L", Zastavanosť: " << cBuildUpRate->rate(item->accessData())
-            << endl;
+        changeColor(13);
+        wcout << L" | Územná jednotka: " << cName->rate(item->accessData());
+        changeColor(6);
+        wcout << L" | Preproduktívni: " << cPreProductive->rate(item->accessData());
+        changeColor(4);
+        wcout << L" | Produktívni: " << cProductive->rate(item->accessData());
+        changeColor(2);
+        wcout << L" | Poproduktívni: " << cPostProductive->rate(item->accessData());
+        changeColor(3);
+        wcout << L" | Populacia: " << cPopulation->rate(item->accessData());
+        changeColor(8);
+        wprintf(L" | Rozloha: %.2f km²", (cTotalArea->rate(item->accessData()) / 1000.0));
+        changeColor(9);
+       wprintf(L" | Zastavane: %.2f km²", (cBuildUpArea->rate(item->accessData())/1000.0));
+       changeColor(10);
+       wprintf(L" | Zastavanosť: %.2f", cBuildUpRate->rate(item->accessData()));
+       wcout << " % |" << endl;
     }
-
+    changeColor(7);
     delete cName;
     delete cPreProductive;
     delete cProductive;
@@ -262,7 +332,8 @@ inline void Tasks::CoutAllCriteria(UnsortedSequenceTable<wstring, TerritorialUni
     delete cBuildUpRate;
 }
 
-inline void Tasks::CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* LLfound, int sortCriteriaType)
+
+inline void Tasks::CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUnit*>* newTable, int sortCriteriaType)
 {
     CriterionTUName* cName = new CriterionTUName();
     CriterionTUPopulation* cPopulation = nullptr;
@@ -276,10 +347,10 @@ inline void Tasks::CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUn
         cBuildUpRate = new CriterionTUBuildUpRate();
     }
 
-    for (auto item : *LLfound)
+    for (auto item : *newTable)
     {
-
-        wcout << L"Územná jednotka: " << cName->rate(item->accessData());
+        changeColor(13);
+        wcout << L" | Územná jednotka: " << cName->rate(item->accessData());
         if (sortCriteriaType == 1)
         {
             wcout << endl;
@@ -287,11 +358,14 @@ inline void Tasks::CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUn
 
         if (sortCriteriaType == 2)
         {
-            wcout << L", Populacia: " << cPopulation->rate(item->accessData()) << endl;
+            changeColor(3);
+            wcout << L" | Populacia: " << cPopulation->rate(item->accessData()) << " |"  << endl;
         }
         else if (sortCriteriaType == 3)
         {
-            wcout << L", Zastavanosť: " << cBuildUpRate->rate(item->accessData()) << endl;
+            changeColor(10);
+            wprintf(L" | Zastavanosť: %.2f", cBuildUpRate->rate(item->accessData()));
+            wcout << " % |" << endl;
         }
 
     }
@@ -299,4 +373,10 @@ inline void Tasks::CoutSortCriteria(UnsortedSequenceTable<wstring, TerritorialUn
     delete cName;
     delete cPopulation;
     delete cBuildUpRate;
+    changeColor(7);
+}
+
+inline void Tasks::changeColor(int desiredColor)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), desiredColor);
 }

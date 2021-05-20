@@ -89,7 +89,7 @@ public:
 };
 inline int CriterionTUPopulation::rate(TerritorialUnit* tu)
 {
-	return tu->getPreProductive()+ tu->getProductive()+ tu->getPostProductive();
+	return tu->getPreProductive() + tu->getProductive() + tu->getPostProductive();
 }
 
 class CriterionTUTotalArea : public Criterion<double> {
@@ -116,9 +116,5 @@ public:
 };
 inline double CriterionTUBuildUpRate::rate(TerritorialUnit* tu)
 {
-	double buildUp = tu->getBuildUpArea();
-	buildUp += 0.0;
-	double total = tu->getTotalArea();
-	total += 0.0;
 	return 100.0*(double)(tu->getBuildUpArea() /tu->getTotalArea());
 }

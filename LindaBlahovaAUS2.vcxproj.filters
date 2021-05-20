@@ -37,9 +37,6 @@
     <Filter Include="Header Files\Logic">
       <UniqueIdentifier>{a8e0d164-d96c-4726-9c69-8dd4f15b547a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Logic\Filters">
-      <UniqueIdentifier>{1a782e00-bc17-4f05-a9f9-83d6b704d376}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Logic\Sorting">
       <UniqueIdentifier>{c470ef12-2730-4673-926a-f7b0a4681485}</UniqueIdentifier>
     </Filter>
@@ -55,6 +52,15 @@
     <Filter Include="Header Files\Logic\Tasks">
       <UniqueIdentifier>{6bbfdcd9-93cb-4fa3-83ad-98ca7d69338d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LetterCode">
+      <UniqueIdentifier>{4a695e10-1dbb-4661-b559-6c0b67e062cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logic\Filtration">
+      <UniqueIdentifier>{1a782e00-bc17-4f05-a9f9-83d6b704d376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logic\Filtration\Filters">
+      <UniqueIdentifier>{71749c1c-2a5f-4144-8d61-6f5caf3e621d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Criterion.h">
@@ -68,18 +74,6 @@
     </ClInclude>
     <ClInclude Include="TypeTU.h">
       <Filter>Header Files\Logic\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="Filter.h">
-      <Filter>Header Files\Logic\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterValue.h">
-      <Filter>Header Files\Logic\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterInterval.h">
-      <Filter>Header Files\Logic\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="CompositeFilter.h">
-      <Filter>Header Files\Logic\Filters</Filter>
     </ClInclude>
     <ClInclude Include="structures\list\array_list.h">
       <Filter>Source Files\structures\list</Filter>
@@ -144,12 +138,6 @@
     <ClInclude Include="structures\structure_iterator.h">
       <Filter>Source Files\structures</Filter>
     </ClInclude>
-    <ClInclude Include="FilterTable.h">
-      <Filter>Header Files\Logic\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterBase.h">
-      <Filter>Header Files\Logic\Filters</Filter>
-    </ClInclude>
     <ClInclude Include="Tasks.h">
       <Filter>Header Files\Logic\Tasks</Filter>
     </ClInclude>
@@ -177,8 +165,35 @@
     <ClInclude Include="App.h">
       <Filter>Header Files\App</Filter>
     </ClInclude>
+    <ClInclude Include="LetterCode.h">
+      <Filter>Header Files\LetterCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorter.h">
+      <Filter>Header Files\Logic\Sorting</Filter>
+    </ClInclude>
     <ClInclude Include="AllFilters.h">
-      <Filter>Header Files\Logic\Filters</Filter>
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeFilter.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filter.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterBase.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterInterval.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterTable.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterValue.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filtration.h">
+      <Filter>Header Files\Logic\Filtration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

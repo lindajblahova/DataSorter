@@ -17,7 +17,7 @@ namespace structures
 		/// <summary> Utriedi tabulku triedenim Heap sort. </summary>
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
-		void sort(UnsortedSequenceTable<K, T>& table, Comparator& comparator);
+		void sort(UnsortedSequenceTable<K, T>& table, Comparator* comparator);
 	};
 
 	template<typename K, typename T>
@@ -75,7 +75,7 @@ namespace structures
 	}
 
     template<typename K, typename T>
-    inline void HeapSort<K, T>::sort(UnsortedSequenceTable<K, T>& table, Comparator& comparator)
+    inline void HeapSort<K, T>::sort(UnsortedSequenceTable<K, T>& table, Comparator* comparator)
     {
         bool swap;
         // postavenie haldy
@@ -86,7 +86,7 @@ namespace structures
             {
                 swap = false;
                 int parent = (current - 1) / 2;
-                if (current > 0 && (comparator.compareTU(table.getItemAtIndex(current).accessData(), table.getItemAtIndex(parent).accessData()) == 1))
+                if (current > 0 && (comparator->compareTU(table.getItemAtIndex(current).accessData(), table.getItemAtIndex(parent).accessData()) == 1))
                 {
                     table.swap(current, parent);
                     current = parent;
@@ -109,13 +109,13 @@ namespace structures
 
                 if (leftSon < i && rightSon < i)
                 {
-                    max = comparator.compareTU(table.getItemAtIndex(leftSon).accessData(), table.getItemAtIndex(rightSon).accessData()) == 1 ? leftSon : rightSon;
+                    max = comparator->compareTU(table.getItemAtIndex(leftSon).accessData(), table.getItemAtIndex(rightSon).accessData()) == 1 ? leftSon : rightSon;
                 }
                 else
                 {
                     max = leftSon < i ? leftSon : rightSon;
                 }
-                if (max < i && (comparator.compareTU(table.getItemAtIndex(max).accessData(), table.getItemAtIndex(current).accessData()) == 1))
+                if (max < i && (comparator->compareTU(table.getItemAtIndex(max).accessData(), table.getItemAtIndex(current).accessData()) == 1))
                 {
                     table.swap(max, current);
                     current = max;
@@ -123,8 +123,6 @@ namespace structures
                 }
 
             } while (swap);
-           // notify();
         }
     }
-
 }

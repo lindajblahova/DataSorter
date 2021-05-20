@@ -1,5 +1,5 @@
 ﻿
-
+#include <stdlib.h>
 #include "App.h"
 
 using namespace structures;
@@ -9,11 +9,8 @@ int main()
     initHeapMonitor();
 
     App* app = new App();
-
     app->Run();
-
     delete app;
-
 
     return 0;
 }

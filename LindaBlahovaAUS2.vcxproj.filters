@@ -40,41 +40,23 @@
     <Filter Include="Header Files\Logic\Sorting">
       <UniqueIdentifier>{c470ef12-2730-4673-926a-f7b0a4681485}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Logic\Sorting\Comparator">
-      <UniqueIdentifier>{63950d9a-4976-46c5-943f-e4d478fae3ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Logic\Criteria">
       <UniqueIdentifier>{a543abb4-3a95-450c-bc6e-3653b04dee72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Logic\Other">
+    <Filter Include="Header Files\Logic\TerritorialUnit">
       <UniqueIdentifier>{be1c05e6-64b3-4e24-8113-bfadabe8f34d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Logic\Tasks">
-      <UniqueIdentifier>{6bbfdcd9-93cb-4fa3-83ad-98ca7d69338d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\LetterCode">
-      <UniqueIdentifier>{4a695e10-1dbb-4661-b559-6c0b67e062cb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Logic\Filtration">
       <UniqueIdentifier>{1a782e00-bc17-4f05-a9f9-83d6b704d376}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Logic\Filtration\Filters">
-      <UniqueIdentifier>{71749c1c-2a5f-4144-8d61-6f5caf3e621d}</UniqueIdentifier>
+      <UniqueIdentifier>{a6156e31-8acd-49c2-b8c0-8e6e2e466027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logic\Sorting\Comparator">
+      <UniqueIdentifier>{8ef21db1-4880-48b5-bf26-459a973f29de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Criterion.h">
-      <Filter>Header Files\Logic\Criteria</Filter>
-    </ClInclude>
-    <ClInclude Include="TerritorialUnit.h">
-      <Filter>Header Files\Logic\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="AllCriteriaTU.h">
-      <Filter>Header Files\Logic\Criteria</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeTU.h">
-      <Filter>Header Files\Logic\Other</Filter>
-    </ClInclude>
     <ClInclude Include="structures\list\array_list.h">
       <Filter>Source Files\structures\list</Filter>
     </ClInclude>
@@ -86,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="structures\list\list.h">
       <Filter>Source Files\structures\list</Filter>
-    </ClInclude>
-    <ClInclude Include="Reader.h">
-      <Filter>Header Files\Logic\Other</Filter>
     </ClInclude>
     <ClInclude Include="structures\array\array.h">
       <Filter>Source Files\structures\array</Filter>
@@ -138,21 +117,6 @@
     <ClInclude Include="structures\structure_iterator.h">
       <Filter>Source Files\structures</Filter>
     </ClInclude>
-    <ClInclude Include="Tasks.h">
-      <Filter>Header Files\Logic\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="Comparator.h">
-      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparatorTUName.h">
-      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparatorTUPopulation.h">
-      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparatorTUBuildUpRate.h">
-      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
-    </ClInclude>
     <ClInclude Include="structures\table\sorting\heap_sort.h">
       <Filter>Source Files\structures\table\sorting</Filter>
     </ClInclude>
@@ -162,38 +126,65 @@
     <ClInclude Include="structures\table\sorting\sort.h">
       <Filter>Source Files\structures\table\sorting</Filter>
     </ClInclude>
-    <ClInclude Include="App.h">
+    <ClInclude Include="Filters\AllFilters.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\CompositeFilter.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\Filter.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\FilterBase.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\FilterInterval.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\FilterTable.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\FilterValue.h">
+      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Filters\Filtration.h">
+      <Filter>Header Files\Logic\Filtration</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\App.h">
       <Filter>Header Files\App</Filter>
     </ClInclude>
-    <ClInclude Include="LetterCode.h">
-      <Filter>Header Files\LetterCode</Filter>
+    <ClInclude Include="Other\Tasks.h">
+      <Filter>Header Files\App</Filter>
     </ClInclude>
-    <ClInclude Include="Sorter.h">
+    <ClInclude Include="Other\Reader.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Criteria\AllCriteriaTU.h">
+      <Filter>Header Files\Logic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="Criteria\Criterion.h">
+      <Filter>Header Files\Logic\Criteria</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting\Comparators\Comparator.h">
+      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting\Comparators\ComparatorTUBuildUpRate.h">
+      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting\Comparators\ComparatorTUName.h">
+      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting\Comparators\ComparatorTUPopulation.h">
+      <Filter>Header Files\Logic\Sorting\Comparator</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting\Sorter.h">
       <Filter>Header Files\Logic\Sorting</Filter>
     </ClInclude>
-    <ClInclude Include="AllFilters.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
+    <ClInclude Include="TerritorialUnit\TerritorialUnit.h">
+      <Filter>Header Files\Logic\TerritorialUnit</Filter>
     </ClInclude>
-    <ClInclude Include="CompositeFilter.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="Filter.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterBase.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterInterval.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterTable.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterValue.h">
-      <Filter>Header Files\Logic\Filtration\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="Filtration.h">
-      <Filter>Header Files\Logic\Filtration</Filter>
+    <ClInclude Include="TerritorialUnit\TypeTU.h">
+      <Filter>Header Files\Logic\TerritorialUnit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

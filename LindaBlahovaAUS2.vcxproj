@@ -139,24 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AllCriteriaTU.h" />
-    <ClInclude Include="AllFilters.h" />
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Comparator.h" />
-    <ClInclude Include="ComparatorTUBuildUpRate.h" />
-    <ClInclude Include="ComparatorTUName.h" />
-    <ClInclude Include="ComparatorTUPopulation.h" />
-    <ClInclude Include="CompositeFilter.h" />
-    <ClInclude Include="Criterion.h" />
-    <ClInclude Include="Filter.h" />
-    <ClInclude Include="FilterBase.h" />
-    <ClInclude Include="FilterInterval.h" />
-    <ClInclude Include="FilterTable.h" />
-    <ClInclude Include="FilterValue.h" />
-    <ClInclude Include="Filtration.h" />
-    <ClInclude Include="LetterCode.h" />
-    <ClInclude Include="Reader.h" />
-    <ClInclude Include="Sorter.h" />
+    <ClInclude Include="Criteria\AllCriteriaTU.h" />
+    <ClInclude Include="Criteria\Criterion.h" />
+    <ClInclude Include="Filters\AllFilters.h" />
+    <ClInclude Include="Filters\CompositeFilter.h" />
+    <ClInclude Include="Filters\Filter.h" />
+    <ClInclude Include="Filters\FilterBase.h" />
+    <ClInclude Include="Filters\FilterInterval.h" />
+    <ClInclude Include="Filters\FilterTable.h" />
+    <ClInclude Include="Filters\FilterValue.h" />
+    <ClInclude Include="Filters\Filtration.h" />
+    <ClInclude Include="Other\App.h" />
+    <ClInclude Include="Other\Reader.h" />
+    <ClInclude Include="Other\Tasks.h" />
+    <ClInclude Include="Sorting\Comparators\Comparator.h" />
+    <ClInclude Include="Sorting\Comparators\ComparatorTUBuildUpRate.h" />
+    <ClInclude Include="Sorting\Comparators\ComparatorTUName.h" />
+    <ClInclude Include="Sorting\Comparators\ComparatorTUPopulation.h" />
+    <ClInclude Include="Sorting\Sorter.h" />
     <ClInclude Include="structures\array\array.h" />
     <ClInclude Include="structures\ds_routines.h" />
     <ClInclude Include="structures\ds_structure_types.h" />
@@ -180,9 +180,8 @@
     <ClInclude Include="structures\table\treap.h" />
     <ClInclude Include="structures\table\unsorted_sequence_table.h" />
     <ClInclude Include="structures\vector\vector.h" />
-    <ClInclude Include="Tasks.h" />
-    <ClInclude Include="TerritorialUnit.h" />
-    <ClInclude Include="TypeTU.h" />
+    <ClInclude Include="TerritorialUnit\TerritorialUnit.h" />
+    <ClInclude Include="TerritorialUnit\TypeTU.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

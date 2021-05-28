@@ -2,7 +2,7 @@
 
 #include "sort.h"
 #include "../unsorted_sequence_table.h"
-#include "../../../Comparator.h"
+#include "../../../Sorting/Comparators/Comparator.h"
 
 namespace structures
 {
@@ -10,18 +10,18 @@ namespace structures
 	/// <summary> Triedenie Heap sort. </summary>
 	/// <typeparam name = "K"> Kluc prvkov v tabulke. </typepram>
 	/// <typeparam name = "T"> Typ dat ukladanych v tabulke. </typepram>
-	template <typename K, typename T>
+	template <typename K, typename T, typename V>
 	class HeapSort : public Sort<K, T>
 	{
 	public:
 		/// <summary> Utriedi tabulku triedenim Heap sort. </summary>
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
-		void sort(UnsortedSequenceTable<K, T>& table, Comparator* comparator);
+		void sort(UnsortedSequenceTable<K, T>& table, Comparator<V>* comparator);
 	};
 
-	template<typename K, typename T>
-	inline void HeapSort<K, T>::sort(UnsortedSequenceTable<K, T>& table)
+	template<typename K, typename T, typename V>
+	inline void HeapSort<K, T, V>::sort(UnsortedSequenceTable<K, T>& table)
 	{
         bool swap;
         // postavenie haldy
@@ -74,8 +74,8 @@ namespace structures
         }
 	}
 
-    template<typename K, typename T>
-    inline void HeapSort<K, T>::sort(UnsortedSequenceTable<K, T>& table, Comparator* comparator)
+    template<typename K, typename T, typename V>
+    inline void HeapSort<K, T, V>::sort(UnsortedSequenceTable<K, T>& table, Comparator<V>* comparator)
     {
         bool swap;
         // postavenie haldy
@@ -86,7 +86,7 @@ namespace structures
             {
                 swap = false;
                 int parent = (current - 1) / 2;
-                if (current > 0 && (comparator->compareTU(table.getItemAtIndex(current).accessData(), table.getItemAtIndex(parent).accessData()) == 1))
+                if ((comparator->compareTU(table.getItemAtIndex(current).accessData(), table.getItemAtIndex(parent).accessData()) == 1))
                 {
                     table.swap(current, parent);
                     current = parent;

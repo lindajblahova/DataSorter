@@ -1,6 +1,6 @@
 ﻿
 #include <stdlib.h>
-#include "App.h"
+#include "Other/App.h"
 
 using namespace structures;
 using namespace std;
